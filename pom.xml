@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.th.supcom</groupId>
+        <artifactId>super-parent</artifactId>
+        <version>5.0.2</version>
+    </parent>
+
+    <groupId>com.sbh.example</groupId>
+    <artifactId>example-extjs</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <modules>
+        <module>example-extjs-server</module>
+    </modules>
+
+    <properties>
+        <framework.facade.version>5.0.28</framework.facade.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.th.supcom</groupId>
+                <artifactId>framework-facade-all</artifactId>
+                <version>${framework.facade.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

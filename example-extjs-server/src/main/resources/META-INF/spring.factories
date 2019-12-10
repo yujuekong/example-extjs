@@ -1,0 +1,2 @@
+com.cenboomh.mcc.annotation.configure.EnableAutoConfiguration=\
+  com.th.example.ImportConfiguration
