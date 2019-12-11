@@ -17,6 +17,9 @@
 
     <modules>
         <module>example-extjs-server</module>
+        <module>example-extjs-impl</module>
+        <module>example-extjs-api</module>
+        <module>example-extjs-api</module>
     </modules>
 
     <properties>
