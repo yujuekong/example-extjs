@@ -27,6 +27,16 @@
             <groupId>com.th.supcom.framework</groupId>
             <artifactId>framework-jslib-extjs</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.sbh.example</groupId>
+            <artifactId>example-extjs-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sbh.example</groupId>
+            <artifactId>example-extjs-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

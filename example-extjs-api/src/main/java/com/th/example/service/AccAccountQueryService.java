@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import java.util.List;
 
 @Produces(RemotingService.CONTENT_TYPE_JSON)
+@RemotingService
 @Path("/accAccountQueryService")
 public interface AccAccountQueryService
 {
