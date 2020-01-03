@@ -12,17 +12,17 @@ INSERT INTO ACC_ACCOUNT(ACCOUNT_ID,PHONE_NUMBER,NAME,ACCOUNT_PWD,REGISTER_TIME) 
 
 
 CREATE TABLE TEST_DATA(
-id INTEGER PRIMARY KEY,
+id VARCHAR(50) PRIMARY KEY,
 NAME VARCHAR(32),
 sex VARCHAR(32),
 desc VARCHAR(64),
 date date
 );
 
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(1,'name1','male','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(2,'name2','male','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(3,'name3','female','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(4,'name4','male','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(5,'name5','male','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(6,'name6','male','',SYSDATE);
-INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES(7,'name7','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('1','name1','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('2','name2','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('3','name3','female','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('4','name4','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('5','name5','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('6','name6','male','',SYSDATE);
+INSERT INTO TEST_DATA(id,name,sex,desc,date) VALUES('7','name7','male','',SYSDATE);

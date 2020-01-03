@@ -14,10 +14,10 @@ Ext.onReady(function () {
     var columns = [
         //序号
         new Ext.grid.RowNumberer(),
-        {header:"编号",dataIndex:"id",sortable:false},
-        {header:"名称",dataIndex:"name"},
-        {header:"性别",dataIndex:"sex",renderer:renderSex},
-        {header:"描述",dataIndex:"desc",renderer:renderDescn},
+        {header:"编号",dataIndex:"id",sortable:false,editor:{allowBlank:false}},
+        {header:"名称",dataIndex:"name",editor:{allowBlank:false}},
+        {header:"性别",dataIndex:"sex",renderer:renderSex,editor:{allowBlank:false}},
+        {header:"描述",dataIndex:"desc",renderer:renderDescn,editor:{allowBlank:false}},
         // {header:"日期",dataIndex:"date",renderer:Ext.util.Format.dateRenderer('Y-m-d')}
         {header:"日期",dataIndex:"date",renderer:function(value){return Ext.Date.format(new Date(value), 'Y-m-d');}}
     ];
@@ -73,6 +73,7 @@ Ext.onReady(function () {
         ]
     });
     //store3从rest接口中获取数据
+    //TODO 要解决一下idProperty属性在新增的时候必须有值的问题
     var store3 = Ext.create('Ext.data.Store',{
         proxy: {
             type:"ajax",
@@ -85,7 +86,10 @@ Ext.onReady(function () {
         },
         //该属性表示是否允许远程排序，设置为true后，进行排序会向后端接口进行请求，
         //请求中会新增sort、property、name、direction等参数说明排序的字段名称、升/降等
-        remoteSort:false
+        remoteSort:false,
+        //该属性设置为true后，store进行remove、load操作时，会自动清除掉modified标记，避免
+        //下次提交的时候会带上之前的modified标记
+        pruneModifiedRecords:true
     });
 
     //定义表格，renderTo代表表格显示的区域
@@ -131,7 +135,71 @@ Ext.onReady(function () {
             displayInfo:true,
             displayMsg:'显示第{0}条到{1}条记录，一共{2}条',
             emptyMsg:"没有记录"
-        })
+        }),
+        //插件
+        plugins:[
+            //表格单元格编辑插件,要配合columns中的editor使用才能生效
+            Ext.create('Ext.grid.plugin.CellEditing',{
+                //配置单击、双击进行编辑
+                clicksToEdit:1
+            })
+        ],
+        //表格头部
+        tbar:[
+            '-',{
+                text:"添加一行",
+                handler:function () {
+                    var p = {
+                        id:"",
+                        name:"",
+                        desc:"",
+                        sex:"",
+                        date:new Date()
+                    };
+                    store3.insert(0,p);
+                }
+            },'-',{
+                text:"删除一行",
+                handler:function () {
+                    Ext.Msg.confirm('信息',"确定要删除？",function(btn){
+                        if(btn === 'yes'){
+                            var sm = grid.getSelectionModel();
+                            var record = sm.getSelection()[0];
+                            console.info(record);
+                            store3.remove(record);
+                        }
+                    })
+                }
+            },'-',{
+                text:"保存",
+                handler:function () {
+                    //获取表格中修改过的数据，并copy一份，以防影响原有的数据
+                    var modifyModel = store3.getModifiedRecords().splice(0);
+                    console.info(modifyModel);
+                    //获取对象数据
+                    var jsonArray = [];
+                    Ext.each(modifyModel,function (item) {
+                        jsonArray.push(item.data);
+                    });
+                    console.info(jsonArray);
+                    //发送请求
+                    Ext.Ajax.request({
+                        method:"POST",
+                        url:"http://127.0.0.1:8010/remoting/rest/testDataQueryService/save",
+                        success:function (response) {
+                            console.info(response);
+                            Ext.Msg.alert('信息',"保存成功！",function () {
+                                store3.reload();
+                            });
+                        },
+                        failure:function () {
+                            Ext.Msg.alert('信息',"保存失败！");
+                        },
+                        params: Ext.encode(jsonArray)
+                    })
+                }
+            }
+        ]
     });
     
     Ext.create('Ext.panel.Panel',{

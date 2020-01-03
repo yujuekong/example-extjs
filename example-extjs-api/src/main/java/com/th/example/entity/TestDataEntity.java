@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class TestDataEntity
 {
-    private Integer id;
+    private String id;
     private String name;
     private String sex;
     private String desc;
@@ -20,12 +20,12 @@ public class TestDataEntity
     {
     }
 
-    public Integer getId()
+    public String getId()
     {
         return id;
     }
 
-    public void setId(Integer id)
+    public void setId(String id)
     {
         this.id = id;
     }
