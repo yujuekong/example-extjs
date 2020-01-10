@@ -89,7 +89,11 @@ Ext.onReady(function () {
         remoteSort:false,
         //该属性设置为true后，store进行remove、load操作时，会自动清除掉modified标记，避免
         //下次提交的时候会带上之前的modified标记
-        pruneModifiedRecords:true
+        pruneModifiedRecords:true,
+        //分组属性 还要需要设置grid中的features属性，才能生效
+        groupField:'sex',
+        //排序
+        sorter:[{property:"id",direction:"DESC"}]
     });
 
     //定义表格，renderTo代表表格显示的区域
@@ -199,11 +203,52 @@ Ext.onReady(function () {
                     })
                 }
             }
-        ]
+        ],
+        //分组排序配置属性
+        features:[{ftype:"grouping"}]
     });
+
+    //定义表格大小可以拖动
+    var rs = Ext.create('Ext.Resizable',grid.getEl(),{
+        wrap:true,
+        minHeight:100,
+        //是否显示可以拖动的图形
+        pinned:true,
+        //可以拖动的地方,对应 上n、下s、左w、右e
+        handles:"s"
+    });
+    rs.on('resize',function (resizer,width,height,event) {
+        grid.setHeight(height);
+    },grid);
+
+    //实现右键菜单
+    var contextMenu = Ext.create('Ext.menu.Menu',{
+        id:"theContextMenu",
+        items:[
+            {
+                text:"查看详情",
+                handler:function(){
+                    var sm = grid.getSelectionModel();
+                    var record = sm.getSelection()[0];
+                    alert("当前行的id是："+record.id);
+                }
+            }
+            ]
+    });
+    //监听行右键菜单事件
+    grid.on('itemcontextmenu',function (view,record,item,index,e) {
+        //阻止浏览器默认的右键菜单
+        e.preventDefault();
+        //显示已定义的contextMenu菜单
+        contextMenu.showAt(e.getXY());
+    });
+
+
     
     Ext.create('Ext.panel.Panel',{
         renderTo:Ext.getBody(),
+        width:650,
+        height:450,
         items:[
             grid,
             {
