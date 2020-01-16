@@ -1,0 +1,14 @@
+//定义store
+Ext.define('Example.store.GridStore',{
+    extend:'Ext.data.Store',
+    alias:'store.gridStore',
+    model:'Patient',
+    proxy:{
+        type:'ajax',
+        url:'',
+        reader:{
+            type:'json'
+        }
+    },
+    autoLoad:true
+});
