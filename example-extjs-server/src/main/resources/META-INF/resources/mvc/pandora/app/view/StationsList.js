@@ -1,36 +1,32 @@
 Ext.define('Pandora.view.StationsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.stationslist',
-    
+
     store: 'Stations',
     title: 'Stations',
     hideHeaders: true,
-    
-    initComponent: function() {
-        this.columns = [{
-            dataIndex: 'name',
-            flex: 1
-        }];
-        
-        this.dockedItems = [{
-            dock: 'bottom',
-            xtype: 'toolbar',
+    columns:[{
+        dataIndex: 'name',
+        flex: 1
+    }],
+    dockedItems:[{
+        dock: 'bottom',
+        xtype: 'toolbar',
+        items: [{
+            xtype: 'button',
+            text: 'Settings',
+            handler: 'settings'
+        }, {
+            //按钮组
+            xtype: 'buttongroup',
             items: [{
-                xtype: 'button',
-                text: 'Settings',
-                action: 'settings'
+                text: 'By Date',
+                handler: 'onFilterDate'
             }, {
-                xtype: 'buttongroup',
-                items: [{
-                    text: 'By Date',
-                    action: 'filter-date'
-                }, {
-                    text: 'ABC',
-                    action: 'filter-name'
-                }]
+                text: 'ABC',
+                handler: 'onFilterName'
             }]
-        }];
-        
-        this.callParent();
-    }
+        }]
+    }]
+
 });

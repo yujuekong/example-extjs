@@ -2,7 +2,10 @@ Ext.define('Pandora.view.SongControls', {
     extend: 'Ext.Container',
     alias: 'widget.songcontrols',
     height: 70,
-    
+    //初始化
+    //initComponent是在构造函数constructor中被调用的
+    //该函数中必须调用 callParent()方法，不然调用者无法初始化这个对象
+    //一般使用该函数进行初始化
     initComponent: function() {
         this.layout = {
             type: 'vbox',

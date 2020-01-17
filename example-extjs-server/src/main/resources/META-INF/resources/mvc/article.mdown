@@ -131,7 +131,7 @@ For our app we had decided to use two models, Station and Song. We also need thr
 ### Models
 Models in Ext 4 are very similar to Records we had in Ext 3. One key difference is that you can now specify a proxy on your model, as well as validations and associations. The Song model for our application in Ext 4 would look like this.
 
-***app/model/Song.js***
+***app/model/SongController.js***
 
     Ext.define('Panda.model.Song', {
         extend: 'Ext.data.Model',
@@ -151,7 +151,7 @@ As you can see we have defined the proxy on our model. It is generally good prac
 
 Lets go ahead and also define our Station model.
 
-***app/model/Station.js***
+***app/model/StationController.js***
     
     Ext.define('Panda.model.Station', {
         extend: 'Ext.data.Model',
@@ -326,7 +326,7 @@ Finally, the Controller base class provides you with lots of functionality, maki
 ## Creating our Controllers
 Now that we have the basic architecture for our UI, models and stores set up it's time to get in control of our application. We planned to have two controllers, Station and Song, so let's create the definitions for them.
 
-***app/controller/Station.js***
+***app/controller/StationController.js***
 
     Ext.define('Panda.controller.Station', {
         extend: 'Ext.app.Controller',
@@ -336,7 +336,7 @@ Now that we have the basic architecture for our UI, models and stores set up it'
         ...
     });     
 
-***app/controller/Song.js***
+***app/controller/SongController.js***
 
     Ext.define('Panda.controller.Song', {
         extend: 'Ext.app.Controller',
@@ -369,7 +369,7 @@ For the purposes of our example application, we'll let the framework load and in
 ### Setting up listeners
 Let's start controlling some parts of our UI by using the ***control** method inside of the controller's init function.
 
-***app/controller/Station.js***
+***app/controller/StationController.js***
 
     ...
     init: function() {
@@ -394,7 +394,7 @@ The value in the listener configuration is the function that gets executed whene
 
 Let's also set up some listeners in our Song controller.
 
-***app/controller/Song.js***
+***app/controller/SongController.js***
     
     ...
     init: function() {
@@ -419,7 +419,7 @@ Our Song controller is interested in a new station being started, because it nee
 
 Let's take a look at how the Station controller, which will be the one responsible for firing this ***stationstart*** application event, actually does this.
 
-***app/controller/Station.js***
+***app/controller/StationController.js***
 
     ...
     onStationSelect: function(selModel, selection) {

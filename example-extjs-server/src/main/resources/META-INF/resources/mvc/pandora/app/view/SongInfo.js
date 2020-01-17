@@ -31,6 +31,8 @@ Ext.define('Pandora.view.SongInfo', {
     
     update: function(record) {
         var data = record ? record.data : {};
+        //查找component组件，对应itemId
+        //update方法是更新数据
         this.down('#songdescription').update(data);
         this.callParent([data]);
     }

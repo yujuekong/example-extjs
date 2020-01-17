@@ -1,10 +1,10 @@
-Ext.define('Pandora.model.Station', {
+Ext.define('Pandora.model.SearchResults', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'played_date','name'],
-    
+    fields: ['id','name'],
+
     proxy: {
         type: 'ajax',
-        url: '/mvc/pandora/data/stations.json',
+        url: '/mvc/pandora/data/searchresults.json',
         reader: {
             type: 'json',
             rootProperty: 'results'

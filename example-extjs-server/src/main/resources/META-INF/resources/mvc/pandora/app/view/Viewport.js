@@ -12,6 +12,7 @@ Ext.define('Pandora.view.Viewport', {
     
     initComponent: function() {
         this.items = {
+            //dockedItems设置组件在容器中的停靠位置 dock分为：left、top、right、bottom
             dockedItems: [{
                 dock: 'top',
                 xtype: 'toolbar',
@@ -28,13 +29,16 @@ Ext.define('Pandora.view.Viewport', {
                 }]
             }],
             layout: {
+                //水平方式布局
                 type: 'hbox',
+                //自动拉伸填充
                 align: 'stretch'
             },
             items: [{
                 width: 250,
                 xtype: 'panel',
                 layout: {
+                    //垂直布局
                     type: 'vbox',
                     align: 'stretch'
                 },
