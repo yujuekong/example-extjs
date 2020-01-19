@@ -5,6 +5,7 @@ import com.cenboomh.mcc.utils.FrameworkBeanCopyUtils;
 import com.th.example.entity.AccAccountEntity;
 import com.th.example.manager.AccAccountManager;
 import com.th.example.service.AccAccountQueryService;
+import com.th.supcom.web.framework.WebResponseData;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,5 +26,11 @@ public class AccAccountServiceImpl implements AccAccountQueryService
     public List<AccAccountEntity> selectAll()
     {
         return FrameworkBeanCopyUtils.applys(accAccountManager.selectAll(),AccAccountEntity.class);
+    }
+
+    @Override
+    public WebResponseData selectAllNew()
+    {
+        return new WebResponseData(accAccountManager.selectAll());
     }
 }

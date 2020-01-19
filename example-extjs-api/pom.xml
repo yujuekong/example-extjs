@@ -18,6 +18,10 @@
             <groupId>com.th.supcom</groupId>
             <artifactId>framework-dependency-server-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.th.supcom.framework</groupId>
+            <artifactId>framework-web</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

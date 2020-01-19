@@ -2,6 +2,7 @@ package com.th.example.service;
 
 import com.cenboomh.mcc.annotation.remoting.RemotingService;
 import com.th.example.entity.AccAccountEntity;
+import com.th.supcom.web.framework.WebResponseData;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -21,4 +22,8 @@ public interface AccAccountQueryService
     @GET
     @Path("selectAll")
     List<AccAccountEntity> selectAll();
+
+    @GET
+    @Path("selectAllNew")
+    WebResponseData selectAllNew();
 }
